@@ -1,0 +1,787 @@
+<!--
+Copyright (c) 2015 Tanner Sansbury
+
+Distributed under the Boost Software License, Version 1.0. (See accompanying
+file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+-->
+
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Charming Python With C++</title>
+
+    <meta name="description" content="Python and C++ integration">
+    <meta name="author" content="Tanner Sansbury">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="reveal.js/css/reveal.css">
+
+    <!-- themes: blank, white, league, sky, beige, simple, serif, night, moon, solarized -->
+    <link rel="stylesheet" href="reveal.js/css/theme/moon.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/solarized.css">
+    <style>
+      .reveal .footer {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        text-align: left;
+        font-size: 0.35em;
+        z-index: 999;
+      }
+
+      .reveal .footer-content {
+        display: none;
+      }
+    </style>
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+      <div class="footer">&nbsp;</div>
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h1 style="text-align: right;">Charming <span class="solarized-magenta">Python</span></h1>
+          <h1 style="text-align: right;">With <span class="solarized-orange">C++</span></h1>
+          <p style="text-align: right;">
+            <small>Tanner Sansbury</small>
+          </p>
+        </section>
+
+        <section>
+          <section>
+            <img style="border: 0px; background: none" data-src="./images/python-logo.svg" />
+            <blockquote cite="https://www.python.org/about/">
+              &ldquo;Python is a programming language that lets you work more quickly and integrate your systems more effectively.&rdquo;
+            </blockquote>
+            <div class="footer-content"><a href="https://www.python.org/about/">https://www.python.org/about/</a></div>
+            <aside class="notes">
+            <ul>
+              <li>Created in 1991</li>
+              <li>4 years older than Java</li>
+              <li>Tends to be everywhere</li>
+            </ul>
+            </aside>
+          </section>
+          <section data-background-image="./images/asf_xml_serialization.png_0_0.png" data-background-size="100% 100%" data-background-position="0 0" data-background-transition="slide">
+          <aside class="notes">
+            <ul>
+              <li>Rich standard library.  Consider an XML serialization.</li>
+            </ul>
+          </aside>
+          </section>
+          <section data-background-image="./images/asf_xml_serialization.png_1_0.png" data-background-size="100% 100%" data-background-position="0 0" data-background-transition="slide"></section>
+          <section data-background-image="./images/asf_xml_serialization.png_2_0.png" data-background-size="100% 100%" data-background-position="0 0" data-background-transition="slide"></section>
+          <section data-background-image="./images/asf_xml_serialization.png_3_0.png" data-background-size="100% 100%" data-background-position="0 0" data-background-transition="slide"></section>
+          <section data-background-image="./images/asf_xml_serialization.png_4_0.png" data-background-size="100% 100%" data-background-position="0 0" data-background-transition="slide">
+            <div class="footer-content"><a href="https://www.paypal-engineering.com/2014/12/10/10-myths-of-enterprise-python/">10 Myths of Enterprise Python</a></div>
+          </section>
+        </section>
+        <section>
+          <h3>It is in <span class="solarized-blue">demand</span> too...</h3>
+          <img src="./images/jobgraph.png" />
+          <div class="footer-content"><a href="http://www.indeed.com/jobtrends?q=c%2B%2B%2C+python&l">http://www.indeed.com/jobanalytics/jobtrends?q=c%2B%2B%2C+python&amp;l=</a></div>
+          <aside class="notes">
+            <ul>
+              <li>Full web-stack</li>
+              <li>Cloud tooling</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <section>
+            <h1 style="text-align: right;">It is <span class="solarized-red">not</span> the right</h1>
+            <h1 style="text-align: right;">tool for</h1>
+            <h1 style="text-align: right;">everything</h1>
+            <aside class="notes">
+              <ul>
+                <li>Device driver integration</li>
+                <li>Low-level interfacing</li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2 style="text-align: left;">But it is pretty <span class="solarized-violet">awesome</span></h2>
+            <h2 style="text-align: left;">for integration</h2>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Harness the <span class="solarized-magenta">Power</span> of C++</h2>
+            <aside class="notes">
+              <ul>
+                <li>Speed</li>
+                <li>Parallelism</li>
+                <li>Extensive libraries no one wants to rewrite</li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <p>The original, popular, and most-maintained implementation is written in C.
+            <aside class="notes">
+              <ul>
+                <li>The implementation is known as <em>CPython</em></li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <p>Interfacing is as easy as using the <a href="https://docs.python.org/2.7/c-api/index.html">Python/C API</a>.</p>
+          </section>
+          <section>
+            <h2 style="text-align: left;">But it really is</h2>
+            <h3 style="text-align: left; margin-left: 20%;">not that <span class="solarized-green">easy</span>...</h3>
+            <aside class="notes">
+              <ul>
+                <li>C++ is a strongly typed static language</li>
+                <li>Python is a strongly typed dynamic memory-managed interpreted language.</li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+          <pre style="width: 100%;"><code data-trim style="max-height: none;">
+static PyObject *my_callback = NULL;
+
+static PyObject *
+my_set_callback(PyObject *dummy, PyObject *args)
+{
+  PyObject *result = NULL;
+  PyObject *temp;
+
+  if (PyArg_ParseTuple(args, "O:set_callback", &amp;temp)) {
+      if (!PyCallable_Check(temp)) {
+          PyErr_SetString(PyExc_TypeError, "parameter must be callable");
+          return NULL;
+      }
+      Py_XINCREF(temp);         /* Add a reference to new callback */
+      Py_XDECREF(my_callback);  /* Dispose of previous callback */
+      my_callback = temp;       /* Remember new callback */
+      /* Boilerplate to return "None" */
+      Py_INCREF(Py_None);
+      result = Py_None;
+  }
+  return result;
+}
+            </code></pre>
+          </section>
+       </section>
+        <section>
+          <div style="background-color: #93a1a1; width: 100%; height: 400%; position: absolute; top: -100%; left: -40%; z-index: -1;">&nbsp;</div>
+          <div>
+            <div style="text-align: right; color: #073642; width: 55%; display: inline-block; margin-right: 5%; vertical-align: top;">
+              <h2 style="color: #002b36;">Extending</h2>
+                <p>Python owns <code>main()</code>.</p>
+                <p>C++ exposed as shared libaries and can be imported as a Python module.</p>
+            </div>
+            <div style="text-align: left; width: 35%; display: inline-block;">
+              <h2>Embedding</h2>
+              <p>C++ owsn <code>main()</code>.</p>
+              <p>Python interpreter built into application.</p>
+            </div>
+          </div>
+          <p>&nbsp;</p>
+        </section>
+        <section>
+          <h3>Various Tools To Help Extending</h3>
+          <ul>
+            <li>Code Generators</li>
+            <li>Transcompilers</li>
+            <li>API Wrappers</li>
+        </section>
+        <!-- SAMPLE -->
+        <section>
+          <section>
+            <h1 style="text-align: right;">Sample App</h1>
+          </section>
+          <section>
+            <p><code class="solarized-yellow">sample::task</code></p>
+            <pre><code data-trim>
+/// @brief Basic task object.
+class task
+{
+public:
+  task(std::string title, bool completed);
+
+  void title(std::string);
+  std::string title() const;
+
+  void completed(bool);
+  bool completed() const;
+};
+            </code></pre>
+          </section>
+          <section>
+            <p><code class="solarized-yellow">sample::task_list_observer</code></p>
+            <pre><code data-trim>
+/// @brief Observes task_list.  Abstract class.
+class task_list_observer
+{
+public:
+
+  virtual ~task_list_observer();
+  virtual void on_add() = 0;
+  virtual void on_remove() = 0;
+};
+            </code></pre>
+          </section>
+          <section>
+            <p><code class="solarized-yellow">sample::task_list</code></p>
+            <pre><code data-trim>
+/// @brief Observable collection for task.  Non-copyable.
+class task_list
+{
+public:
+
+  typedef std::shared_ptr&lt;task&gt; element_type;
+  typedef std::list&lt;element_type&gt; tasks;
+  typedef std::list&lt;task_list_observer*&gt; observers;
+
+  static task_list* create();
+
+  void add(element_type task);
+  void remove(element_type task);
+  tasks all() const;
+
+  void attach(task_list_observer*);
+  void detach(task_list_observer*);
+};
+
+/// @brief Helper functions.
+task_list::tasks active(const task_list&amp; list);
+task_list::tasks completed(const task_list&amp; list);
+            </code></pre>
+          </section>
+        </section>
+        <!-- /SAMPLE -->
+        <!-- SWIG -->
+        <section>
+          <section>
+            <h1 style="text-align: right;">SWIG</h1>
+            <p style="text-align: right;"><a href="http://www.swig.org/">http://www.swig.org</a>
+            <aside class="notes">
+              <ul>
+                <li>SWIG is GPL, but imposes no license changes to the generated code.</li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <p>Code generator</p>
+            <p>Uses <em class="solarized-cyan">interface</em> files to create python bindings</p>
+          </section>
+          <section>
+            <p><em class="solarized-cyan">Interface</em> files are C++ syntax <em>like</em></p>
+            <p>In some cases, one only needs to include the C++ header file</p>
+          </section>
+          <section>
+            <p>With <code class="solarized-cyan">sample.i</code> as input creating the <code>sample</code> module</p>
+            <p>SWIG generates <code class="solarized-green">sample_wrap.cxx</code> and <code class="solarized-green">sample_wrap.h</code> and <code>sample.py</code></p>
+            <p>Compile the <span class="solarized-green">wrapper</span> into <code class="solarized-orange">_sample.so</code></p>
+          </section>
+          <section>
+            <p><code class="solarized-cyan">task.i</code></p>
+            <pre><code data-trim>
+%module sample
+
+%include &lt;std_string.i&gt;
+%include &lt;std_shared_ptr.i&gt;
+
+/* Use shared ownership for sample::task. */
+%shared_ptr(sample::task);
+
+namespace sample {
+
+/* Rename task to Task based on Python naming conventions. */
+%rename(Task) task;
+
+class task
+{
+public:
+  task(std::string, bool);
+};
+
+%extend task
+{
+  /* Create python private methods. */
+  std::string _get_title();
+  void _set_title(std::string);
+
+  /* Inject python code into the proxy that has Python setup the 
+   * properties. */
+  %pythoncode %{
+    __swig_getmethods__["title"] = _get_title
+    __swig_setmethods__["title"] = _set_title
+    if _newclass: title = property(_get_title, _set_title)
+  %}
+
+  bool completed;
+};
+
+} /* namespace sample */
+
+/** Code injected into wrapping as-is. */
+%{
+  #include &lt;memory&gt; // std::shared_ptr
+  #include &lt;sample/task.hpp&gt;
+
+  std::string sample_task__get_title(sample::task* obj)
+  {
+    return obj-&gt;title();
+  }
+
+  void sample_task__set_title(sample::task* obj, std::string value)
+  {
+    obj-&gt;title(value);
+  }
+
+  bool sample_task_completed_get(sample::task* obj)
+  {
+    return obj-&gt;completed();
+  }
+
+  void sample_task_completed_set(sample::task* obj, bool value)
+  {
+    obj-&gt;completed(value);
+  }
+%}
+            </code></pre>
+            <aside class="notes">
+              <ul>
+                <li>And sometimes simple classes are not easily wrapped</li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <p><code class="solarized-cyan">task_list_observer.i</code></p>
+            <pre><code data-trim>
+/* Enable directors, as at least one class has virtual methods. */
+%module(directors="1") sample
+
+* Enable director for virtual method handling. */
+%feature("director") sample::task_list_observer;
+
+/* Rename to Python naming conventions. */
+%rename(TaskListObserver) sample::task_list_observer;
+
+%include &lt;sample/task_list_observer.hpp&gt;
+
+/** Code injected into wrapping as-is. */
+%{
+  #include &lt;sample/task_list_observer.hpp&gt;
+%}
+            </code></pre>
+            <aside class="notes">
+              <ul>
+                <li>SWIG uses <em>directors</em> to generate classes that implement the virtual functions and delegate to Python object</li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <p><code class="solarized-cyan">task_list.i</code></p>
+            <pre><code data-trim>
+%module sample
+
+%include &lt;std_list.i&gt;
+%template(tasks) std::list&lt;std::shared_ptr&lt;sample::task&gt;&gt;;
+
+/* Rename to Python naming conventions. */
+%rename(TaskList) sample::task_list;
+%include &lt;sample/task_list.hpp&gt;
+
+namespace sample {
+
+/* Extend model so that Python object constructor can use factor
+ * function. */
+%extend task_list
+{
+  task_list();
+};
+
+} // namespace sample
+
+/** Code injected into wrapping as-is. */
+%{
+  #include &lt;sample/task_list.hpp&gt;
+
+  sample::task_list* new_sample_task_list()
+  {
+    return sample::task_list::create();
+  }
+%}
+            </code></pre>
+            <aside class="notes">
+              <ul>
+                <li>Sometimes complex classes are easily wrapped</li>
+              </ul>
+            </aside>
+          </section>
+        </section>
+        <!-- /SWIG -->
+        <!-- BOOST_PYTHON -->
+        <section>
+          <section>
+            <h1 style="text-align: right;">Boost.Python</h1>
+            <p style="text-align: right;"><a href="http://www.boost.org/">http://www.boost.org</a>
+          </section>
+          <section>
+            <p>API Wrapper</p>
+            <p>Focused on <em class="solarized-magenta">seamless interoperability</em> instead of just binding generation</p>
+            <p>Can be used in other Python binding generation tools</p>
+          </section>
+          <section>
+            <p>Uses C++ types and functions to wrap wrap types and functions are runtime.</p>
+            <p>Templates, templates, templates.</p>
+          </section>
+          <section>
+            <p>With C++ code declaring a Python module named <code>sample</code></p>
+            <p>Compile into a library named <code class="solarized-orange">sample.so</code></p>
+            <p>Link against <code class="solarized-orange">libboost_python.so</code></p>
+            <aside class="notes">
+              <ul>
+                <li>The <code>libboost_python.so</code> library provides a single location for type registration and conversions to be shared between modules.</li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <p><code class="solarized-green">task.cpp</code></p>
+            <pre><code data-trim>
+// Helper function to disambiguate the overloaded function.
+bool task_get_completed(sample::task&amp; self)
+{
+  return self.completed();
+}
+
+// Define the module.
+BOOST_PYTHON_MODULE(sample)
+{
+  namespace python = boost::python;
+
+  // Expose task_list.
+  python::class_&lt;sample::task,
+        std::shared_ptr&lt;sample::task&gt; // Holding type.
+      &gt;("Task", // Python class name.
+        python::init&lt;std::string, bool&gt;()) // Constructor.
+    // Static-cast required due to overload.
+    .add_property("title",
+      static_cast&lt;std::string (sample::task::*)() const&gt;(
+        &amp;sample::task::title),
+      static_cast&lt;void (sample::task::*)(std::string)&gt;(
+        &amp;sample::task::title))
+    // Non-member (named and anonymous) functions can be used too.
+    .add_property("completed",
+      &amp;task_get_completed,
+      +[](sample::task&amp; self, bool value) { self.completed(value); })
+    ;
+}
+            </code></pre>
+          </section>
+          <section>
+            <p><code class="solarized-green">task_list_observer.cpp</code></p>
+            <pre><code data-trim>
+struct task_list_observer_wrapper
+  : sample::task_list_observer,
+    boost::python::wrapper&lt;sample::task_list_observer&gt;
+{
+  void on_add()
+  {
+    this-&gt;get_override("on_add")();
+  }
+
+  void on_remove()
+  {
+    this-&gt;get_override("on_remove")();
+  }
+};
+
+BOOST_PYTHON_MODULE(sample)
+{
+  namespace python = boost::python;
+
+  // Expose task_list_observer.
+  python::class_&lt;task_list_observer_wrapper,
+        boost::noncopyable // Required for pure-virtuals.
+      &gt;("TaskListObserver") // Python class name.
+    .def("on_add", 
+         python::pure_virtual(&amp;sample::task_list_observer::on_add))
+    .def("on_remove",
+         python::pure_virtual(&amp;sample::task_list_observer::on_remove))
+    ;
+}
+            </code></pre>
+          </section>
+          <section>
+            <p><code class="solarized-green">task_list.cpp</code></p>
+            <pre><code data-trim>
+// Define the module.
+BOOST_PYTHON_MODULE(sample)
+{
+  namespace python = boost::python;
+
+  python::class_&lt;sample::task_list::tasks
+      &gt;("TaskListTasks", // Python class name.
+        python::no_init) // Suppress construction from within Python.
+    .def("__iter__", python::iterator&lt;sample::task_list::tasks&gt;())
+    ;
+
+  // Expose task_list.
+  python::class_&lt;sample::task_list,
+        boost::noncopyable // task_list is non-copyable.
+      &gt;("TaskList", // Python class name.
+        python::no_init) // Suppress Boost.Python constructors.
+    // Provide constructor that delegates to factory.
+    .def("__init__", python::make_constructor
+      (&amp;sample::task_list::create))
+    .def("add", &amp;sample::task_list::add)
+    .def("remove", &amp;sample::task_list::remove)
+    .def("all", &amp;sample::task_list::all)
+    .def("attach", &amp;sample::task_list::attach)
+    .def("detach", &amp;sample::task_list::detach)
+    ;
+
+  // Free functions.
+  python::def("active", &amp;sample::active);
+  python::def("completed", &amp;sample::completed);
+}
+            </code></pre>
+          </section>
+        </section>
+        <!-- /BOOST_PYTHON -->
+        <!-- SIP -->
+        <section>
+          <section>
+            <h1 style="text-align: right;">SIP</h1>
+            <p style="text-align: right;"><a href="http://www.riverbankcomputing.com/software/sip">http://www.riverbankcomputing.com/software/sip</a>
+          </section>
+          <section>
+            <p>Code Generator</p>
+            <p>Uses its own <em class="solarized-cyan">SIP</em> files to create python bindings.
+            <p>Very similar to SWIG</p>
+            <aside class="notes">
+              <ul>
+                <li>Used to generate PyQT</li>
+                <li>SIP is licensed under similar terms as Python, and GPL v2 and v3.  If you choose GPL, then bindings must be distributed under the terms of GPL as generated code links against the SIP library<li/>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <pre><code data-trim>
+%Module word
+
+class Word {
+
+%TypeHeaderCode
+#include &lt;word.h&gt;
+%End
+
+public:
+  Word(const char *);
+
+  char *reverse() const;
+};
+            </code></pre>
+            <div class="footer-content"><a href="http://pyqt.sourceforge.net/Docs/sip4/using.html#a-simple-c-example">http://pyqt.sourceforge.net/Docs/sip4/using.html#a-simple-c-example</a></div>
+          </section>
+        </section>
+        <!-- /SIP -->
+        <!-- Cython -->
+        <section>
+          <section>
+            <h1 style="text-align: right;">cython</h1>
+            <p style="text-align: right;"><a href="http://cython.org">http://cython.org</a>
+          </section>
+          <section>
+            <p>Transcompiler</p>
+            <p>Language is a superset of Python</p>
+            <aside class="notes">
+              <ul>
+                <li> Apache License</li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <p>Supports calling C++ functions</p>
+            <p>Often used to transcompile Python into fast C modules</p>
+          </section>
+          <section>
+            <p>Cython uses a <code class="solarized-cyan">pyx</code> to generate a <code>cpp</code> file</p>
+            <p><code>cpp</code> file compiled into shared library importable by Python</p>
+          </section>
+          <section>
+            <pre><code data-trim>
+cdef extern from "Rectangle.h" namespace "shapes":
+    cdef cppclass Rectangle:
+        Rectangle(int, int, int, int) except +
+        int x0, y0, x1, y1
+        int getLength()
+        int getHeight()
+        int getArea()
+        void move(int, int)
+            </code></pre>
+            <div class="footer-content"><a href="http://docs.cython.org/src/userguide/wrapping_CPlusPlus.html">http://docs.cython.org/src/userguide/wrapping_CPlusPlus.html</a></div>
+          </section>
+        </section>
+        <!-- /Cython -->
+        <!-- ctypes -->
+        <section>
+          <section>
+            <h1 style="text-align: right;">ctypes</h1>
+            <p style="text-align: right;"><a href="https://docs.python.org/2/library/ctypes.html">https://docs.python.org/2/library/ctypes.html</a>
+          </section>
+          <section>
+            <p>Standard Python library</p>
+            <p>Accesses symbols directly (e.g. <code>dlsym()</code>)</p>
+          </section>
+          <section>
+            <p>Can be very verbose</p>
+            <p>Great for small set of simple functions &amp; types (integer and strings)</p>
+          </section>
+          <section>
+            <pre><code data-trim>
+&gt;&gt;&gt; from ctypes import *
+&gt;&gt;&gt; libc.printf
+&lt;_FuncPtr object at 0x...&gt;
+&gt;&gt;&gt; printf("%d bottles of beer\n", 42)
+42 bottles of beer
+19
+&gt;&gt;&gt; printf("%f bottles of beer\n", 42.5)
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in ?
+ArgumentError: argument 2: exceptions.TypeError: Don't know how to 
+               convert parameter 2
+            </code></pre>
+            <div class="footer-content"><a href="https://docs.python.org/2/library/ctypes.html">https://docs.python.org/2/library/ctypes.html</a></div>
+          </section>
+        </section>
+        <!-- /ctypes -->
+        <section>
+          <section>
+            <h1><span class="solarized-red">Memory</span> Management</h1>
+          </section>
+          <section>
+            <div style="background-color: #93a1a1; width: 100%; height: 400%; position: absolute; top: -100%; left: -65%; z-index: -1;">&nbsp;</div>
+            <div>
+              <div style="text-align: right; color: #073642; width: 30%; display: inline-block; margin-right: 5%; vertical-align: top;">
+                <h2 style="color: #002b36;">Shared</h2>
+                  <p>Easy to manage</p>
+                  <p>Often uses a smart pointer</p>
+              </div>
+              <div style="text-align: left; width: 60%; display: inline-block;">
+                <h2>Exclusive</h2>
+                <p>Easy when copying by value</p>
+                <p>Tricky with lvalue references</p>
+                <br/>
+                <p style="text-align: center;"><small>Consider if C++ outter returns an internal reference</small></p>
+                <pre><code data-trim>
+&gt;&gt;&gt; inner = outter.inner # lvalue ref
+&gt;&gt;&gt; outter = None        # ~outter() 
+&gt;&gt;&gt; inner.boom()
+                </code></pre>
+              </div>
+            </div>
+            <p>&nbsp;</p>
+          </section>
+          <section>
+            <h2>Consult the library documentation</h2>
+          </section>
+        </section>
+        <!-- FINAL REMARKS -->
+        <section>
+          <section>
+            <h1>Final <span class="solarized-violet">Remarks</span></h1>
+          </section>
+          <section>
+            <h2>Create bindings one piece at a time</h2>
+          </section>
+          <section>
+            <h2><span class="solarized-orange">Beware</span> of containers</h2>
+            <p>Semantic differences between the languages make it difficult</p>
+          </section>
+          <section>
+            <h2 style="text-align: right;">Wrapping a lot of files?  Try SWIG</h2>
+            <p style="text-align: right;"  class="fragment" data-fragment-index="0"><small>It <span class="solarized-red">sucks</span> debugging generated code</small></p>
+          </section>
+          <section>
+            <h2 style="text-align: left;">Need fine grain control?</h2>
+            <h2 style="text-align: left;">Use Boost.Python</h2>
+            <p style="text-align: left;" class="fragment" data-fragment-index="0"><small>
+              And templated templated templated templated
+              <br/>
+              compiler errors <span class="solarized-red">suck</span> too!
+            </small></p>
+          </section>
+          <section>
+            <h2>Make bindings simple.  Not Pythonic?</h2>
+            <h3>Then <a href="http://en.wikipedia.org/wiki/Monkey_patch">monkey patch</a> in Python</h3>
+          </section>
+          <section>
+            <h3>Write a C++ facade that is <span class="solarized-green">easier</span> to wrap</h3>
+          </section>
+        </section>
+        <!-- /FINAL REMARKS -->
+      </div>
+    </div>
+
+    <script src="reveal.js/lib/js/head.min.js"></script>
+    <script src="reveal.js/js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+
+      var footer = document.getElementsByClassName('reveal')[0]
+                           .getElementsByClassName('footer')[0];
+
+      function set_current_footer(event) {
+        var content = event.currentSlide.getElementsByClassName('footer-content')[0];
+        footer.innerHTML = content ? content.innerHTML : '';
+
+      }
+      Reveal.addEventListener('ready', set_current_footer);
+      Reveal.addEventListener('slidechanged', set_current_footer);
+      Reveal.addEventListener('overviewhidden', set_current_footer);
+      Reveal.addEventListener('overviewshown', function() {
+        footer.innerHTML = '';
+      });
+    </script>
+
+  </body>
+</html>
